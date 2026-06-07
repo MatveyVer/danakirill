@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Дана & Кирилл · Приглашение на свадьбу</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Marck+Script&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF5EC; --paper:#F1E8D7; --sage:#8C9A78; --sage-deep:#5F6B4F;
+    --olive:#4C5740; --taupe:#473F38; --taupe-soft:#7C7064; --gold:#C2A24E;
+    --line:#E3D7C2; --blush:#C9A8A2;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--taupe);
+    line-height:1.7;font-weight:300;overflow-x:hidden;position:relative}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.35;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+  .serif{font-family:'Playfair Display',serif}
+  .script{font-family:'Marck Script',cursive}
+  .wrap{max-width:760px;margin:0 auto;padding:0 26px;position:relative;z-index:2}
+  .eyebrow{font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--sage-deep);font-weight:400}
+
+  /* botanical divider */
+  .leaf{display:block;margin:26px auto;width:120px;height:auto;color:var(--sage)}
+
+  /* ---------- HERO ---------- */
+  .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:70px 26px 40px;position:relative}
+  .hero .mono{font-family:'Playfair Display',serif;font-size:1.1rem;letter-spacing:.3em;color:var(--sage-deep);
+    opacity:0;animation:fade 1.1s .1s forwards}
+  .hero .invite{margin-top:30px;opacity:0;animation:fade 1.1s .3s forwards}
+  .hero .names{font-family:'Marck Script',cursive;font-size:clamp(4rem,16vw,8.5rem);line-height:.95;
+    color:var(--olive);margin:6px 0;opacity:0;animation:rise 1.2s .5s forwards}
+  .hero .amp{font-family:'Playfair Display',serif;font-style:italic;color:var(--sage);font-size:.5em;vertical-align:middle}
+  .hero .date{font-family:'Playfair Display',serif;font-size:1.35rem;letter-spacing:.12em;color:var(--taupe);
+    margin-top:14px;opacity:0;animation:fade 1.1s .8s forwards}
+  .hero .place-s{font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;color:var(--taupe-soft);
+    margin-top:8px;opacity:0;animation:fade 1.1s .95s forwards}
+  .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--sage-deep);
+    font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;text-decoration:none;display:flex;
+    flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fade 1s 1.4s forwards}
+  .scrollcue span.dot{width:40px;height:40px;border:1px solid var(--line);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;animation:bob 1.8s ease-in-out infinite;background:var(--cream)}
+
+  /* ---------- SECTION ---------- */
+  section.block{padding:78px 0;text-align:center}
+  .block h2{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2rem,6vw,3rem);color:var(--olive);margin-bottom:8px}
+  .block h2 em{font-style:italic;color:var(--sage-deep)}
+  .block .lead{color:var(--taupe-soft);max-width:46ch;margin:0 auto}
+
+  /* countdown */
+  .count{display:flex;justify-content:center;gap:18px;margin-top:34px;flex-wrap:wrap}
+  .count .cell{min-width:84px}
+  .count .num{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,8vw,3.6rem);color:var(--olive);line-height:1}
+  .count .lbl{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--taupe-soft);margin-top:8px}
+
+  /* where/when cards */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px;text-align:center}
+  .card{background:var(--cream);border:1px solid var(--line);border-radius:18px;padding:34px 26px}
+  .card .ico{color:var(--sage);margin-bottom:14px}
+  .card h3{font-family:'Playfair Display',serif;font-weight:500;font-size:1.5rem;color:var(--taupe);margin-bottom:6px}
+  .card p{color:var(--taupe-soft);font-size:.95rem}
+  .card .big{font-family:'Playfair Display',serif;font-size:1.9rem;color:var(--olive);margin:2px 0}
+  .card a.maplink{display:inline-block;margin-top:12px;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--sage-deep);text-decoration:none;border-bottom:1px solid var(--sage)}
+
+  /* timeline */
+  .timeline{max-width:520px;margin:40px auto 0;text-align:left}
+  .tl{display:flex;gap:20px;padding:18px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+  .tl:last-child{border-bottom:none}
+  .tl .time{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--sage-deep);min-width:72px}
+  .tl .ico{color:var(--sage);margin-top:3px;flex-shrink:0}
+  .tl .txt h4{font-weight:500;font-size:1.02rem;color:var(--taupe);letter-spacing:.01em}
+  .tl .txt p{font-size:.86rem;color:var(--taupe-soft)}
+
+  /* dress code */
+  .swatches{display:flex;justify-content:center;gap:16px;margin-top:30px;flex-wrap:wrap}
+  .sw{text-align:center}
+  .sw .dot{width:54px;height:54px;border-radius:50%;border:1px solid rgba(0,0,0,.06);margin:0 auto 8px;box-shadow:0 6px 16px -8px rgba(71,63,56,.4)}
+  .sw .nm{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe-soft)}
+
+  /* notes */
+  .notes{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:36px;text-align:left}
+  .note{background:var(--paper);border-radius:16px;padding:26px}
+  .note .ico{color:var(--sage-deep);margin-bottom:10px}
+  .note h4{font-family:'Playfair Display',serif;font-weight:500;font-size:1.25rem;color:var(--taupe);margin-bottom:4px}
+  .note p{font-size:.9rem;color:var(--taupe-soft)}
+
+  /* rsvp */
+  .rsvp{background:var(--olive);color:var(--cream);border-radius:24px;padding:54px 30px;margin-top:10px}
+  .rsvp h2{color:var(--cream)}
+  .rsvp .lead{color:rgba(250,245,236,.75)}
+  .rsvp .btns{display:flex;gap:14px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+  .rbtn{padding:14px 28px;border-radius:40px;font-family:'Montserrat';font-size:.9rem;letter-spacing:.04em;
+    cursor:pointer;border:1px solid rgba(250,245,236,.4);background:transparent;color:var(--cream);transition:all .2s}
+  .rbtn:hover{background:rgba(250,245,236,.12)}
+  .rbtn.sel{background:var(--cream);color:var(--olive);border-color:var(--cream);font-weight:500}
+  .rsvp .reply{margin-top:24px;min-height:24px;font-family:'Playfair Display',serif;font-style:italic;font-size:1.15rem;color:var(--cream);opacity:0;transition:opacity .4s}
+  .rsvp .reply.show{opacity:1}
+  .rsvp .wa{display:inline-block;margin-top:18px;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(250,245,236,.5);padding-bottom:2px}
+
+  /* organizers footer */
+  .org{text-align:center;padding:70px 0 40px}
+  .org .small{font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--taupe-soft)}
+  .org .brand{font-family:'Playfair Display',serif;font-size:2.1rem;color:var(--olive);margin:10px 0 4px}
+  .org .role{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sage-deep);margin-bottom:18px}
+  .org a.ig{display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--taupe);
+    border:1px solid var(--line);border-radius:40px;padding:11px 20px;font-size:.9rem;transition:all .2s}
+  .org a.ig:hover{background:var(--paper);border-color:var(--sage)}
+  .org a.ig svg{color:var(--sage-deep)}
+  footer.fin{text-align:center;padding:26px;color:var(--taupe-soft);font-size:.76rem;letter-spacing:.05em;border-top:1px solid var(--line)}
+
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  @keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s,transform .9s}
+  .reveal.in{opacity:1;transform:translateY(0)}
+
+  @media(max-width:600px){
+    .cards,.notes{grid-template-columns:1fr}
+    .count{gap:10px}
+    .count .cell{min-width:64px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="mono">Д &nbsp;·&nbsp; К</div>
+  <div class="invite eyebrow">Приглашаем на нашу свадьбу</div>
+  <div class="names">Дана<span class="amp"> &amp; </span>Кирилл</div>
+  <!-- ✏️ дата свадьбы -->
+  <div class="date">12 сентября 2026</div>
+  <div class="place-s">Белгород</div>
+
+  <svg class="leaf" viewBox="0 0 200 40" fill="none" stroke="currentColor" stroke-width="1.2" style="animation:fade 1.1s 1.1s forwards;opacity:0">
+    <path d="M10 20 H80"/><path d="M120 20 H190"/>
+    <path d="M100 20 m-9 0 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0" fill="none"/>
+    <path d="M100 11 v-6 M100 29 v6"/>
+    <path d="M86 14 q6 6 0 12 M114 14 q-6 6 0 12"/>
+  </svg>
+
+  <a href="#countdown" class="scrollcue">
+    <span>листайте</span>
+    <span class="dot">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    </span>
+  </a>
+</header>
+
+<!-- ============ COUNTDOWN ============ -->
+<section class="block" id="countdown">
+  <div class="wrap reveal">
+    <div class="eyebrow">До нашего дня осталось</div>
+    <div class="count">
+      <div class="cell"><div class="num" id="cd-d">—</div><div class="lbl">дней</div></div>
+      <div class="cell"><div class="num" id="cd-h">—</div><div class="lbl">часов</div></div>
+      <div class="cell"><div class="num" id="cd-m">—</div><div class="lbl">минут</div></div>
+      <div class="cell"><div class="num" id="cd-s">—</div><div class="lbl">секунд</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHERE / WHEN ============ -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="reveal">Когда и <em>где</em></h2>
+    <div class="cards">
+      <div class="card reveal">
+        <div class="ico"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></div>
+        <h3>Дата и время</h3>
+        <div class="big serif">12 сентября</div>
+        <p>суббота · сбор гостей в 15:00</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <h3>Место</h3>
+        <!-- ✏️ название и адрес площадки -->
+        <div class="big serif" style="font-size:1.5rem">Ресторан «Усадьба»</div>
+        <p>г. Белгород, ул. Примерная, 1</p>
+        <a class="maplink" href="https://yandex.ru/maps/?text=Белгород" target="_blank" rel="noopener">Открыть карту →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section class="block" style="background:var(--paper)">
+  <div class="wrap">
+    <h2 class="reveal">Программа <em>дня</em></h2>
+    <p class="lead reveal">Чтобы вы ничего не пропустили — вот как пройдёт наш праздник.</p>
+    <div class="timeline">
+      <div class="tl reveal"><div class="time serif">15:00</div>
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/></svg></div>
+        <div class="txt"><h4>Сбор гостей</h4><p>Welcome-напитки и лёгкие закуски</p></div></div>
+
+      <div class="tl reveal"><div class="time serif">15:30</div>
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="9" cy="9" r="4"/><circle cx="15" cy="15" r="4"/></svg></div>
+        <div class="txt"><h4>Выездная церемония</h4><p>Самый трепетный момент — будьте рядом</p></div></div>
+
+      <div class="tl reveal"><div class="time serif">16:30</div>
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 22h8M12 11v11M5 3h14l-1 6a6 6 0 0 1-12 0z"/></svg></div>
+        <div class="txt"><h4>Банкет</h4><p>Тёплые слова, тосты и вкусный ужин</p></div></div>
+
+      <div class="tl reveal"><div class="time serif">19:00</div>
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></div>
+        <div class="txt"><h4>Первый танец и шоу-программа</h4><p>Танцы до утра обязательны</p></div></div>
+
+      <div class="tl reveal"><div class="time serif">22:00</div>
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 21h16v-7H4zM4 14c0-2 2-3 2-5M10 14c0-2 2-3 2-5M16 14c0-2 2-3 2-5"/></svg></div>
+        <div class="txt"><h4>Свадебный торт</h4><p>Сладкая кульминация вечера</p></div></div>
+
+      <div class="tl reveal"><div class="time serif">23:30</div>
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/></svg></div>
+        <div class="txt"><h4>Завершение вечера</h4><p>Бенгальские огни и тёплые объятия</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DRESS CODE ============ -->
+<section class="block">
+  <div class="wrap">
+    <h2 class="reveal">Дресс-<em>код</em></h2>
+    <p class="lead reveal">Будем счастливы, если вы поддержите палитру торжества — мягкие природные оттенки.</p>
+    <div class="swatches reveal">
+      <div class="sw"><div class="dot" style="background:#8C9A78"></div><div class="nm">Шалфей</div></div>
+      <div class="sw"><div class="dot" style="background:#4C5740"></div><div class="nm">Олива</div></div>
+      <div class="sw"><div class="dot" style="background:#E8DEC9"></div><div class="nm">Айвори</div></div>
+      <div class="sw"><div class="dot" style="background:#C9A8A2"></div><div class="nm">Пыльная роза</div></div>
+      <div class="sw"><div class="dot" style="background:#7C7064"></div><div class="nm">Тауп</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOTES ============ -->
+<section class="block" style="background:var(--paper)">
+  <div class="wrap">
+    <h2 class="reveal">Несколько <em>деталей</em></h2>
+    <div class="notes">
+      <div class="note reveal">
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg></div>
+        <h4>Подарки</h4>
+        <p>Лучший подарок — вы рядом. Если захотите порадовать нас, мы будем благодарны за вклад в наше свадебное путешествие.</p>
+      </div>
+      <div class="note reveal">
+        <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2c1.5 3 4 4 4 7a4 4 0 0 1-8 0c0-3 2.5-4 4-7z"/><path d="M12 13v8"/></svg></div>
+        <h4>Цветы</h4>
+        <p>Вместо букетов будем рады одному цветку для нашей фотозоны — соберём из них общий свадебный букет на память.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RSVP ============ -->
+<section class="block">
+  <div class="wrap">
+    <div class="rsvp reveal">
+      <div class="eyebrow" style="color:rgba(250,245,236,.7)">Подтвердите присутствие</div>
+      <h2 style="margin-top:10px">Будете с нами?</h2>
+      <p class="lead">Пожалуйста, дайте знать до 1 августа 2026, чтобы мы всё подготовили.</p>
+      <div class="btns">
+        <button class="rbtn" data-r="yes">С радостью буду ✓</button>
+        <button class="rbtn" data-r="no">К сожалению, не смогу</button>
+      </div>
+      <div class="reply" id="reply"></div>
+      <!-- ✏️ номер для подтверждения (сейчас — телефон организаторов) -->
+      <a class="wa" id="waLink" href="https://wa.me/79087868841" target="_blank" rel="noopener">Сообщить в WhatsApp →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ORGANIZERS ============ -->
+<section class="org">
+  <div class="wrap">
+    <svg class="leaf" viewBox="0 0 200 40" fill="none" stroke="var(--sage)" stroke-width="1.2" style="margin-bottom:30px">
+      <path d="M10 20 H80"/><path d="M120 20 H190"/>
+      <path d="M100 20 m-9 0 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0"/>
+      <path d="M100 11 v-6 M100 29 v6"/><path d="M86 14 q6 6 0 12 M114 14 q-6 6 0 12"/>
+    </svg>
+    <div class="small">Организация и координация свадьбы</div>
+    <div class="brand serif">Те самые</div>
+    <div class="role">Илья &amp; Жасмина · Белгород</div>
+    <a class="ig" href="https://instagram.com/te_samye.bgd" target="_blank" rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @te_samye.bgd
+    </a>
+  </div>
+</section>
+
+<footer class="fin">Сделано с любовью для Даны и Кирилла · 2026</footer>
+
+<script>
+/* ---------- Countdown ---------- */
+const WEDDING = new Date('2026-09-12T15:00:00'); // ✏️ дата и время свадьбы
+const pad = n => String(n).padStart(2,'0');
+function tick(){
+  const diff = WEDDING - new Date();
+  if(diff <= 0){
+    document.getElementById('cd-d').textContent='0';
+    ['cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');
+    document.querySelector('#countdown .eyebrow').textContent='Сегодня тот самый день!';
+    return;
+  }
+  const d=Math.floor(diff/864e5), h=Math.floor(diff%864e5/36e5),
+        m=Math.floor(diff%36e5/6e4), s=Math.floor(diff%6e4/1e3);
+  document.getElementById('cd-d').textContent=d;
+  document.getElementById('cd-h').textContent=pad(h);
+  document.getElementById('cd-m').textContent=pad(m);
+  document.getElementById('cd-s').textContent=pad(s);
+}
+tick(); setInterval(tick,1000);
+
+/* ---------- RSVP ---------- */
+const reply = document.getElementById('reply');
+const waLink = document.getElementById('waLink');
+document.querySelectorAll('.rbtn').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.rbtn').forEach(x=>x.classList.remove('sel'));
+    b.classList.add('sel');
+    const yes = b.dataset.r==='yes';
+    reply.textContent = yes
+      ? 'Ура! Мы очень ждём встречи с вами ♥'
+      : 'Жаль, что не получится — будем скучать ♥';
+    reply.classList.add('show');
+    const msg = yes
+      ? 'Здравствуйте! Подтверждаю присутствие на свадьбе Даны и Кирилла 12.09.2026.'
+      : 'Здравствуйте! К сожалению, не смогу быть на свадьбе Даны и Кирилла 12.09.2026.';
+    waLink.href = 'https://wa.me/79087868841?text=' + encodeURIComponent(msg);
+  });
+});
+
+/* ---------- Smooth anchor + reveal on scroll ---------- */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.getElementById(a.getAttribute('href').slice(1));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+const io = new IntersectionObserver((es)=>{
+  es.forEach(en=>{ if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);} });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
